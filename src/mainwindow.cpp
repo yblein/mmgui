@@ -3,6 +3,7 @@
 
 #include <QtConcurrent>
 #include <QDebug>
+#include <QFileDialog>
 #include <mm/heightmap.h>
 #include <mm/colormap.h>
 
@@ -141,4 +142,10 @@ void MainWindow::updateImage()
 	auto future = QtConcurrent::run(static_cast<Node*>(&output), &Node::map);
 	updateStartTime.restart();
 	futureWatcher.setFuture(future);
+}
+
+void MainWindow::on_actionSave_triggered()
+{
+	auto fileName = QFileDialog::getSaveFileName(this, "Save current map", "", tr("Image (*.png)"));
+	ui->image->pixmap()->save(fileName);
 }

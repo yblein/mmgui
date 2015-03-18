@@ -13,7 +13,6 @@ Edit the location of MapMaker in [mmgui.pro](./mmgui.pro). Then simply run
 * Mutiple outputs
 * Textual outputs
 * Default scene
-* Way to save outputs
 * Complete generators
 * Complete filters
 * Add multi-input filters (filter `shader`)
