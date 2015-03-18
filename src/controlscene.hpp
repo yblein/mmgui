@@ -7,24 +7,24 @@
 
 class ControlScene : public QGraphicsScene
 {
-    Q_OBJECT
+	Q_OBJECT
 public:
-    explicit ControlScene(QObject *parent = 0);
+	explicit ControlScene(QObject *parent = 0);
 
 signals:
-    void graphUpdated();
+	void graphUpdated();
 
 public slots:
 
 protected:
-    virtual void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * mouseEvent);
-    virtual void mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent);
-    virtual void mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent);
-    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent * mouseEvent);
+	virtual void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * mouseEvent);
+	virtual void mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent);
+	virtual void mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent);
+	virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent * mouseEvent);
 
 private:
-    HandleItem *dragFrom;
-    QGraphicsLineItem dragLine;
+	HandleItem *dragFrom;
+	QGraphicsLineItem dragLine;
 };
 
 #endif // CONTROLSCENE_H

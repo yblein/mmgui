@@ -10,19 +10,19 @@
 class GeneratorNode : public Node
 {
 public:
-    explicit GeneratorNode(const QString &name, HandleItem::MapType outputType, Generator *generator, QGraphicsItem *parent = 0);
+	explicit GeneratorNode(const QString &name, HandleItem::MapType outputType, Generator *generator, QGraphicsItem *parent = 0);
 
-    ~GeneratorNode();
+	~GeneratorNode();
 
 protected:
-    virtual void updateMap();
-    virtual const Map* rawMap();
+	virtual void updateMap();
+	virtual const Map* rawMap();
 
-    virtual void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
+	virtual void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
 
 private:
-    Generator *generator_;
-    Map *map_;
+	Generator *generator_;
+	Map *map_;
 };
 
 #endif // INPUTNODE_H

@@ -9,24 +9,24 @@
 class Map
 {
 public:
-    Map() {}
-    virtual ~Map() {}
+	Map() {}
+	virtual ~Map() {}
 };
 
 class HeightMap : public Map
 {
 public:
-    HeightMap() {}
+	HeightMap() {}
 
-    mm::heightmap data;
+	mm::heightmap data;
 };
 
 class ColorMap : public Map
 {
 public:
-    ColorMap() {}
+	ColorMap() {}
 
-    mm::colormap data;
+	mm::colormap data;
 };
 
 #endif // MAP_HPP

@@ -8,26 +8,26 @@
 class FilterNode : public Node
 {
 public:
-    typedef std::function<void(const Map*, Map*)> Filter;
+	typedef std::function<void(const Map*, Map*)> Filter;
 
-    FilterNode(const QString &name, HandleItem::MapType outputType,
-               Filter filter, QGraphicsItem *parent = 0);
+	FilterNode(const QString &name, HandleItem::MapType outputType,
+			   Filter filter, QGraphicsItem *parent = 0);
 
-    ~FilterNode();
+	~FilterNode();
 
 protected:
-    void updateMap();
+	void updateMap();
 
-    const Map *rawMap();
+	const Map *rawMap();
 
-    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
 
 private:
-    //FilterController controller_;
-    //QDialog dialog;
-    //Ui ui;
-    Filter filter_;
-    Map *map_;
+	//FilterController controller_;
+	//QDialog dialog;
+	//Ui ui;
+	Filter filter_;
+	Map *map_;
 };
 
 #endif // NOTEITEM_H

@@ -17,35 +17,35 @@ class ControlScene;
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+	explicit MainWindow(QWidget *parent = 0);
+	~MainWindow();
 
 private slots:
-    void on_actionNewFractalGen_triggered();
-    void on_actionNewFilterIslandize_triggered();
-    void on_actionFlatten_triggered();
-    void on_actionSmooth_triggered();
-    void on_actionColorize_triggered();
+	void on_actionNewFractalGen_triggered();
+	void on_actionNewFilterIslandize_triggered();
+	void on_actionFlatten_triggered();
+	void on_actionSmooth_triggered();
+	void on_actionColorize_triggered();
 
-    void renderingFinished();
-    void renderingStarted();
+	void renderingFinished();
+	void renderingStarted();
 
 private:
-    typedef QFutureWatcher<const Map*> FutureWatcherMap;
+	typedef QFutureWatcher<const Map*> FutureWatcherMap;
 
-    void updateImage();
+	void updateImage();
 
-    Ui::MainWindow *ui;
+	Ui::MainWindow *ui;
 
-    ControlScene *scene;
+	ControlScene *scene;
 
-    OutputNode output;
+	OutputNode output;
 
-    QTime updateStartTime;
-    FutureWatcherMap futureWatcher;
+	QTime updateStartTime;
+	FutureWatcherMap futureWatcher;
 };
 
 #endif // MAINWINDOW_H

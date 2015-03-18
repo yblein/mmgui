@@ -6,10 +6,10 @@ class Map;
 class Generator
 {
 public:
-    virtual ~Generator() {}
+	virtual ~Generator() {}
 
-    virtual void generate(Map *output) = 0;
-    virtual bool configure() = 0;
+	virtual void generate(Map *output) = 0;
+	virtual bool configure() = 0;
 };
 
 #endif // GENERATOR_HPP

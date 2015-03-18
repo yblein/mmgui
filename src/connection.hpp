@@ -9,31 +9,31 @@ class HandleItem;
 class Connection : public QGraphicsItem
 {
 public:
-    enum { Type = UserType + 16 };
+	enum { Type = UserType + 16 };
 
-    Connection(Node *from, Node *to, HandleItem* fromHandle, HandleItem* toHandle);
+	Connection(Node *from, Node *to, HandleItem* fromHandle, HandleItem* toHandle);
 
-    virtual int type() const { return Type;}
+	virtual int type() const { return Type;}
 
-    void updatePosition();
+	void updatePosition();
 
-    Node *from();
-    Node *to();
+	Node *from();
+	Node *to();
 
-    virtual QRectF boundingRect() const;
-    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);
-    virtual QPainterPath shape() const;
+	virtual QRectF boundingRect() const;
+	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);
+	virtual QPainterPath shape() const;
 
 protected:
-    void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
-    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
+	void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
 
 private:
-    Node *from_;
-    Node *to_;
-    HandleItem *fromHandle_;
-    HandleItem *toHandle_;
-    bool hovered_;
+	Node *from_;
+	Node *to_;
+	HandleItem *fromHandle_;
+	HandleItem *toHandle_;
+	bool hovered_;
 };
 
 #endif // CONNECTIONITEM_H

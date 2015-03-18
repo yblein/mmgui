@@ -10,92 +10,92 @@
 #include <mm/normalize.h>
 
 FractalGenerator::FractalGenerator(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::FractalGenerator),
-    engine_(),
-    fractal_(mm::gradient_noise(engine_, mm::curve_cubic<double>), 1),
-    width_(256), height_(256)
+	QDialog(parent),
+	ui(new Ui::FractalGenerator),
+	engine_(),
+	fractal_(mm::gradient_noise(engine_, mm::curve_cubic<double>), 1),
+	width_(256), height_(256)
 {
-    ui->setupUi(this);
-    ui->seedSpinBox->setValue(mm::random_engine::default_seed);
+	ui->setupUi(this);
+	ui->seedSpinBox->setValue(mm::random_engine::default_seed);
 
-    setWindowTitle(tr("Fractal generator settings"));
+	setWindowTitle(tr("Fractal generator settings"));
 }
 
 FractalGenerator::~FractalGenerator()
 {
-    delete ui;
+	delete ui;
 }
 
 void FractalGenerator::generate(Map *output)
 {
-    auto outputHeightmap = dynamic_cast<HeightMap*>(output);
-    Q_ASSERT(outputHeightmap != nullptr);
+	auto outputHeightmap = dynamic_cast<HeightMap*>(output);
+	Q_ASSERT(outputHeightmap != nullptr);
 
-    outputHeightmap->data = mm::normalize()(fractal_(engine_, width_, height_));
+	outputHeightmap->data = mm::normalize()(fractal_(engine_, width_, height_));
 }
 
 bool FractalGenerator::configure()
 {
-    return exec();
+	return exec();
 }
 
 void FractalGenerator::on_buttonBox_accepted()
 {
-    // image size
-    width_ = ui->widthSpinBox->value();
-    height_ = ui->heightSpinBox->value();
+	// image size
+	width_ = ui->widthSpinBox->value();
+	height_ = ui->heightSpinBox->value();
 
-    // random engine
-    engine_.seed(ui->seedSpinBox->value());
+	// random engine
+	engine_.seed(ui->seedSpinBox->value());
 
-    // fractal settings
-    double scale = ui->scaleDoubleSpinBox->value();
-    int octaves = ui->octavesSpinBox->value();
-    double lacunarity = ui->lacunarityDoubleSpinBox->value();
-    double persistence = ui->persistenceDoubleSpinBox->value();
+	// fractal settings
+	double scale = ui->scaleDoubleSpinBox->value();
+	int octaves = ui->octavesSpinBox->value();
+	double lacunarity = ui->lacunarityDoubleSpinBox->value();
+	double persistence = ui->persistenceDoubleSpinBox->value();
 
-    // noise type
-    typedef NoiseFunction (FractalGenerator::*MemFuncPtr)();
-    MemFuncPtr noises[] = {
-        &FractalGenerator::getValueNoise,
-        &FractalGenerator::getGradientNoise,
-        &FractalGenerator::getSimplexNoise
-    };
-    auto noise = (this->*(noises[ui->noiseTypeComboBox->currentIndex()]))();
+	// noise type
+	typedef NoiseFunction (FractalGenerator::*MemFuncPtr)();
+	MemFuncPtr noises[] = {
+		&FractalGenerator::getValueNoise,
+		&FractalGenerator::getGradientNoise,
+		&FractalGenerator::getSimplexNoise
+	};
+	auto noise = (this->*(noises[ui->noiseTypeComboBox->currentIndex()]))();
 
-    fractal_ = mm::fractal(noise, scale, octaves, lacunarity, persistence);
+	fractal_ = mm::fractal(noise, scale, octaves, lacunarity, persistence);
 }
 
 FractalGenerator::NoiseFunction FractalGenerator::getValueNoise()
 {
-    auto curve = getCurve();
-    return std::move(mm::value_noise(engine_, curve));
+	auto curve = getCurve();
+	return std::move(mm::value_noise(engine_, curve));
 }
 
 FractalGenerator::NoiseFunction FractalGenerator::getGradientNoise()
 {
-    auto curve = getCurve();
-    return std::move(mm::gradient_noise(engine_, curve));
+	auto curve = getCurve();
+	return std::move(mm::gradient_noise(engine_, curve));
 }
 
 FractalGenerator::NoiseFunction FractalGenerator::getSimplexNoise()
 {
-    return std::move(mm::simplex_noise(engine_));
+	return std::move(mm::simplex_noise(engine_));
 }
 
 FractalGenerator::CurveFunction FractalGenerator::getCurve()
 {
-    CurveFunction curves[] = {
-        mm::curve_linear<double>,
-        mm::curve_cubic<double>,
-        mm::curve_quintic<double>,
-        mm::curve_cosine<double>,
-    };
-    return curves[ui->functionComboBox->currentIndex()];
+	CurveFunction curves[] = {
+		mm::curve_linear<double>,
+		mm::curve_cubic<double>,
+		mm::curve_quintic<double>,
+		mm::curve_cosine<double>,
+	};
+	return curves[ui->functionComboBox->currentIndex()];
 }
 
 void FractalGenerator::on_noiseTypeComboBox_currentIndexChanged(int index)
 {
-    ui->noiseFunctionGroupBox->setEnabled((index == 0 || index == 1));
+	ui->noiseFunctionGroupBox->setEnabled((index == 0 || index == 1));
 }

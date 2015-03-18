@@ -5,9 +5,9 @@
 #include <mm/normalize.h>
 
 OutputNode::OutputNode(QGraphicsItem *parent) :
-    Node("Output", parent)
+	Node("Output", parent)
 {
-    addInput(HandleItem::AnyMap);
+	addInput(HandleItem::AnyMap);
 }
 
 void OutputNode::updateMap()
@@ -16,9 +16,9 @@ void OutputNode::updateMap()
 
 const Map *OutputNode::rawMap()
 {
-    if (inputConn_.size() == 0) {
-        return nullptr;
-    }
+	if (inputConn_.size() == 0) {
+		return nullptr;
+	}
 
-    return inputConn_.first()->from()->map();
+	return inputConn_.first()->from()->map();
 }

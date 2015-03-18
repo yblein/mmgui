@@ -15,34 +15,34 @@ class Map;
 // TODO: get rid of the private inheritance
 class FractalGenerator : private QDialog, public Generator
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit FractalGenerator(QWidget *parent = 0);
-    ~FractalGenerator();
+	explicit FractalGenerator(QWidget *parent = 0);
+	~FractalGenerator();
 
-    virtual void generate(Map *output);
-    virtual bool configure();
+	virtual void generate(Map *output);
+	virtual bool configure();
 
 private slots:
-    void on_buttonBox_accepted();
-    void on_noiseTypeComboBox_currentIndexChanged(int index);
+	void on_buttonBox_accepted();
+	void on_noiseTypeComboBox_currentIndexChanged(int index);
 
 private:
-    typedef std::function<double(double, double)> NoiseFunction;
-    typedef std::function<double(double)> CurveFunction;
+	typedef std::function<double(double, double)> NoiseFunction;
+	typedef std::function<double(double)> CurveFunction;
 
-    NoiseFunction getValueNoise();
-    NoiseFunction getGradientNoise();
-    NoiseFunction getSimplexNoise();
+	NoiseFunction getValueNoise();
+	NoiseFunction getGradientNoise();
+	NoiseFunction getSimplexNoise();
 
-    CurveFunction getCurve();
+	CurveFunction getCurve();
 
-    Ui::FractalGenerator *ui;
-    mm::random_engine engine_;
-    mm::fractal fractal_;
-    size_t width_;
-    size_t height_;
+	Ui::FractalGenerator *ui;
+	mm::random_engine engine_;
+	mm::fractal fractal_;
+	size_t width_;
+	size_t height_;
 };
 
 #endif // FRACTALGENBUILDER_H
