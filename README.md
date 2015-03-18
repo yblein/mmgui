@@ -1,6 +1,9 @@
 # MapMaker GUI
 A small GUI to generate maps using the [MapMaker library](https://github.com/jube/mapmaker).
 
+## Screenshot
+![MapMaker GUI screenshot](./doc/screenshot.png)
+
 ## Building
 Edit the location of MapMaker in [mmgui.pro](./mmgui.pro). Then simply run
 
