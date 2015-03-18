@@ -5,13 +5,13 @@
 
 #include <QDialog>
 
+class Filter;
+
 class FilterNode : public Node
 {
 public:
-	typedef std::function<void(const Map*, Map*)> Filter;
-
 	FilterNode(const QString &name, HandleItem::MapType outputType,
-			   Filter filter, QGraphicsItem *parent = 0);
+			   Filter *filter, QGraphicsItem *parent = 0);
 
 	~FilterNode();
 
@@ -27,10 +27,7 @@ protected:
 	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
 
 private:
-	//FilterController controller_;
-	//QDialog dialog;
-	//Ui ui;
-	Filter filter_;
+	Filter *filter_;
 	Map *map_;
 };
 

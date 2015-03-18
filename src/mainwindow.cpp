@@ -8,11 +8,11 @@
 #include <mm/colormap.h>
 
 #include "controlscene.hpp"
-#include "filternode.hpp"
-#include "fractalgenerator.hpp"
 #include "generatornode.hpp"
+#include "fractalgenerator.hpp"
 #include "constantgenerator.hpp"
-#include "filterfunctions.hpp"
+#include "filternode.hpp"
+#include "filters.hpp"
 
 static QImage heightmapToImage(const mm::heightmap &map)
 {
@@ -80,25 +80,25 @@ void MainWindow::on_actionConstant_triggered()
 
 void MainWindow::on_actionNewFilterIslandize_triggered()
 {
-	auto f = new FilterNode(tr("Islandize Filter"), HandleItem::HeightMap, islandizeFilter);
+	auto f = new FilterNode(tr("Islandize Filter"), HandleItem::HeightMap, new IslandizeFilter());
 	scene->addItem(f);
 }
 
 void MainWindow::on_actionFlatten_triggered()
 {
-	auto f = new FilterNode(tr("Flatten Filter"), HandleItem::HeightMap, flattenFilter);
+	auto f = new FilterNode(tr("Flatten Filter"), HandleItem::HeightMap, new FlattenFilter());
 	scene->addItem(f);
 }
 
 void MainWindow::on_actionSmooth_triggered()
 {
-	auto f = new FilterNode(tr("Smooth Filter"), HandleItem::HeightMap, smoothFilter);
+	auto f = new FilterNode(tr("Smooth Filter"), HandleItem::HeightMap, new SmoothFilter());
 	scene->addItem(f);
 }
 
 void MainWindow::on_actionColorize_triggered()
 {
-	auto f = new FilterNode(tr("Colorize Filter"), HandleItem::ColorMap, colorizeFilter);
+	auto f = new FilterNode(tr("Colorize Filter"), HandleItem::ColorMap, new ColorizeFilter());
 	scene->addItem(f);
 }
 

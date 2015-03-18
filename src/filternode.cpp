@@ -1,8 +1,10 @@
 #include "filternode.hpp"
 
 #include "connection.hpp"
+#include "controlscene.hpp"
+#include "filterfunctions.hpp"
 
-FilterNode::FilterNode(const QString &name, HandleItem::MapType outputType, FilterNode::Filter filter, QGraphicsItem *parent)
+FilterNode::FilterNode(const QString &name, HandleItem::MapType outputType, Filter *filter, QGraphicsItem *parent)
 	: Node(name, parent), filter_(filter)
 {
 	//ui.setupUi(&dialog);
@@ -25,13 +27,14 @@ FilterNode::FilterNode(const QString &name, HandleItem::MapType outputType, Filt
 FilterNode::~FilterNode()
 {
 	delete map_;
+	delete filter_;
 }
 
 void FilterNode::updateMap()
 {
 	if (inputConn_.size() != 0) {
 		auto prevMap = inputConn_.first()->from()->map();
-		filter_(prevMap, map_);
+		filter_->filter(prevMap, map_);
 	}
 }
 
@@ -42,17 +45,14 @@ const Map *FilterNode::rawMap()
 
 void FilterNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
-	/*
-	bool configUpdated;// = controller_.configure();
-
-	configUpdated = dialog.exec();
+	bool configUpdated = filter_->configure();
 
 	if (configUpdated) {
 		evictCache();
 		auto cs = qobject_cast<ControlScene*>(scene());
 		Q_ASSERT(cs != nullptr);
 		cs->graphUpdated();
-	}*/
+	}
 
 	Node::mouseDoubleClickEvent(event);
 }
