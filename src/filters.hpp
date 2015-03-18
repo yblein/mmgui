@@ -58,8 +58,10 @@ public:
 	ColorizeFilter();
 
 	virtual void filter(const Map *input, Map *output);
+	virtual bool configure();
 
 private:
+	double seaLevel_;
 	mm::color_ramp ramp_;
 };
 

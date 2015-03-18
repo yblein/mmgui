@@ -2,7 +2,7 @@
 
 #include "connection.hpp"
 #include "controlscene.hpp"
-#include "filterfunctions.hpp"
+#include "filters.hpp"
 
 FilterNode::FilterNode(const QString &name, HandleItem::MapType outputType, Filter *filter, QGraphicsItem *parent)
 	: Node(name, parent), filter_(filter)

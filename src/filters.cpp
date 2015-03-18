@@ -92,7 +92,7 @@ bool SmoothFilter::configure()
 
 
 ColorizeFilter::ColorizeFilter()
-	: ramp_(mm::color_ramp::basic())
+	: seaLevel_(0.5), ramp_(mm::color_ramp::basic())
 {
 }
 
@@ -103,7 +103,16 @@ void ColorizeFilter::filter(const Map *input, Map *output)
 	auto outputColormap = dynamic_cast<ColorMap*>(output);
 	Q_ASSERT(outputColormap != nullptr);
 
-	double sea_level = 0.5;
+	outputColormap->data = mm::colorize(ramp_, seaLevel_)(inputHeightmap->data);
+}
 
-	outputColormap->data = mm::colorize(ramp_, sea_level)(inputHeightmap->data);
+bool ColorizeFilter::configure()
+{
+	bool ok;
+	auto newSeaLevel = QInputDialog::getDouble(nullptr, "Colorize filter settings", "Sea level", seaLevel_, 0, 100, 2, &ok);
+	if (ok) {
+		seaLevel_ = newSeaLevel;
+		return true;
+	}
+	return false;
 }
