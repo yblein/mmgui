@@ -9,6 +9,10 @@ class OutputNode : public Node
 public:
 	explicit OutputNode(QGraphicsItem *parent = 0);
 
+	enum { Type = UserType + 3 };
+
+	virtual int type() const { return Type; }
+
 protected:
 	virtual void updateMap();
 	virtual const Map* rawMap();

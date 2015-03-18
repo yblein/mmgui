@@ -8,7 +8,6 @@ Edit the location of MapMaker in [mmgui.pro](./mmgui.pro). Then simply run
     make
 
 ## TODO
-* Node deletion (contextual menu?)
 * Configuration UI for filters
 * Mutiple outputs
 * Textual outputs

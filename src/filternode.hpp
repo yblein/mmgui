@@ -15,6 +15,10 @@ public:
 
 	~FilterNode();
 
+	enum { Type = UserType + 2 };
+
+	virtual int type() const { return Type; }
+
 protected:
 	void updateMap();
 

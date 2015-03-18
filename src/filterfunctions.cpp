@@ -26,8 +26,8 @@ void flattenFilter(const Map *input, Map *output)
 	auto outputHeightmap = dynamic_cast<HeightMap*>(output);
 	Q_ASSERT(outputHeightmap != nullptr);
 
-	double border = 2.5;
-	outputHeightmap->data = mm::flatten(border)(inputHeightmap->data);
+	double factor = 2.0;
+	outputHeightmap->data = mm::flatten(factor)(inputHeightmap->data);
 }
 
 void smoothFilter(const Map *input, Map *output)
@@ -37,8 +37,8 @@ void smoothFilter(const Map *input, Map *output)
 	auto outputHeightmap = dynamic_cast<HeightMap*>(output);
 	Q_ASSERT(outputHeightmap != nullptr);
 
-	double border = 2.5;
-	outputHeightmap->data = mm::smooth(border)(inputHeightmap->data);
+	size_t iterations = 10;
+	outputHeightmap->data = mm::smooth(iterations)(inputHeightmap->data);
 }
 
 void colorizeFilter(const Map *input, Map *output)

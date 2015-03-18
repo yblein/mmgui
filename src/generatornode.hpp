@@ -14,6 +14,10 @@ public:
 
 	~GeneratorNode();
 
+	enum { Type = UserType + 4 };
+
+	virtual int type() const { return Type; }
+
 protected:
 	virtual void updateMap();
 	virtual const Map* rawMap();

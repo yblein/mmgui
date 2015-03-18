@@ -14,6 +14,10 @@ public:
 	Node(QString name, QGraphicsItem *parent = 0);
 	virtual ~Node() {}
 
+	enum { Type = UserType + 1 };
+
+	virtual int type() const { return Type; }
+
 	//! Return a pointer to the calculated map with cache handling
 	virtual const Map* map();
 
@@ -25,6 +29,8 @@ public:
 
 	void removeInputConnection(Connection *conn);
 	void removeOutputConnection(Connection *conn);
+
+	QList<Connection *> disconnect();
 
 protected:
 	QVariant itemChange(GraphicsItemChange change, const QVariant &value);

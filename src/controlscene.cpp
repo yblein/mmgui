@@ -3,6 +3,7 @@
 #include "connection.hpp"
 #include "handleitem.hpp"
 #include "generatornode.hpp"
+#include "filternode.hpp"
 
 #include <QGraphicsSceneMouseEvent>
 
@@ -33,15 +34,17 @@ void ControlScene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
 void ControlScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
-	QList<QGraphicsItem *> startItems = items(mouseEvent->scenePos());
-	if (startItems.size() != 0 && startItems.first()->type() == HandleItem::Type) {
-		if (dragFrom == nullptr) {
-			dragFrom = qgraphicsitem_cast<HandleItem *>(startItems.first());
-			dragLine.setLine(QLineF(dragFrom->scenePos(), mouseEvent->scenePos()));
-			dragLine.setVisible(true);
-			return;
+	if (mouseEvent->button() == Qt::LeftButton) {
+		QList<QGraphicsItem *> startItems = items(mouseEvent->scenePos());
+		if (startItems.size() != 0 && startItems.first()->type() == HandleItem::Type) {
+			if (dragFrom == nullptr) {
+				dragFrom = qgraphicsitem_cast<HandleItem *>(startItems.first());
+				dragLine.setLine(QLineF(dragFrom->scenePos(), mouseEvent->scenePos()));
+				dragLine.setVisible(true);
+				return;
+			}
+			mouseEvent->accept();
 		}
-		mouseEvent->accept();
 	}
 
 	QGraphicsScene::mousePressEvent(mouseEvent);
@@ -58,7 +61,25 @@ void ControlScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
 void ControlScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
-	if (dragFrom) {
+	if (mouseEvent->button() == Qt::MidButton) {
+		QList<QGraphicsItem *> clickedItems = items(mouseEvent->scenePos());
+		foreach (QGraphicsItem *i, clickedItems) {
+			if (i->type() != GeneratorNode::Type && i->type() != FilterNode::Type)
+				continue;
+			if (Node *n = dynamic_cast<Node *>(i)) {
+				QList<Connection*> cs = n->disconnect();
+				foreach (Connection *c, cs) {
+					removeItem(c);
+					delete c;
+				}
+				removeItem(n);
+				delete n;
+
+				emit graphUpdated();
+				break;
+			}
+		}
+	} else if (mouseEvent->button() == Qt::LeftButton && dragFrom) {
 		QList<QGraphicsItem *> endItems = items(mouseEvent->scenePos());
 
 		while (endItems.size() != 0 && endItems.first()->type() != HandleItem::Type)
@@ -72,8 +93,8 @@ void ControlScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 				std::swap(dragFrom, dragTo);
 
 			if (dragFrom->canBeConnectedTo(dragTo)) {
-				Node *p1 = qgraphicsitem_cast<Node *>(dragFrom->parentItem());
-				Node *p2 = qgraphicsitem_cast<Node *>(dragTo->parentItem());
+				Node *p1 = dynamic_cast<Node *>(dragFrom->parentItem());
+				Node *p2 = dynamic_cast<Node *>(dragTo->parentItem());
 
 				auto newConn = new Connection(p1, p2, dragFrom, dragTo);
 				newConn->setZValue(dragLine.zValue());

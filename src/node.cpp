@@ -81,6 +81,18 @@ void Node::removeOutputConnection(Connection *conn)
 	outputConn_.removeOne(conn);
 }
 
+QList<Connection*> Node::disconnect()
+{
+	foreach (Connection *c, inputConn_) {
+		c->from()->removeOutputConnection(c);
+	}
+	foreach (Connection *c, outputConn_) {
+		c->to()->removeInputConnection(c);
+	}
+	inputConn_.append(outputConn_);
+	return inputConn_;
+}
+
 QVariant Node::itemChange(GraphicsItemChange change, const QVariant &value)
 {
 	if (change == QGraphicsItem::ItemPositionChange) {
