@@ -8,7 +8,6 @@ Edit the location of MapMaker in [mmgui.pro](./mmgui.pro). Then simply run
     make
 
 ## TODO
-* Configuration UI for filters
 * Mutiple outputs
 * Textual outputs
 * Default scene
@@ -21,6 +20,7 @@ Edit the location of MapMaker in [mmgui.pro](./mmgui.pro). Then simply run
     * might be too expensive?
     * turn on/off according to map size/computation time?
 * Size independant?
+* Configurable color ramp for the colorize filter
 
 ## Authors
 - Yoann Blein
