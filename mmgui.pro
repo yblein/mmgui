@@ -12,10 +12,8 @@ CONFIG += c++11 depend_includepath
 TEMPLATE = app
 TARGET = mmgui
 
-HEADERS += $$files(src/*.hpp) \
-    constantgenerator.hpp
-SOURCES += $$files(src/*.cpp) \
-    constantgenerator.cpp
+HEADERS += $$files(src/*.hpp)
+SOURCES += $$files(src/*.cpp)
 FORMS   += $$files(forms/*.ui)
 
 OTHER_FILES += LICENSE README.md

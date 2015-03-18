@@ -40,6 +40,7 @@
      <property name="title">
       <string>Generator</string>
      </property>
+     <addaction name="actionConstant"/>
      <addaction name="actionNewFractalGen"/>
     </widget>
     <widget class="QMenu" name="menuFilter_2">
@@ -47,9 +48,9 @@
       <string>Filter</string>
      </property>
      <addaction name="actionColorize"/>
+     <addaction name="actionFlatten"/>
      <addaction name="actionNewFilterIslandize"/>
      <addaction name="actionSmooth"/>
-     <addaction name="actionFlatten"/>
     </widget>
     <addaction name="menuGenerator_2"/>
     <addaction name="menuFilter_2"/>
@@ -71,11 +72,14 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionExit"/>
+   <addaction name="separator"/>
+   <addaction name="actionConstant"/>
    <addaction name="actionNewFractalGen"/>
+   <addaction name="separator"/>
    <addaction name="actionColorize"/>
+   <addaction name="actionFlatten"/>
    <addaction name="actionNewFilterIslandize"/>
    <addaction name="actionSmooth"/>
-   <addaction name="actionFlatten"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QDockWidget" name="dockWidget">
@@ -149,6 +153,14 @@
    </property>
    <property name="toolTip">
     <string>New colorize filter</string>
+   </property>
+  </action>
+  <action name="actionConstant">
+   <property name="text">
+    <string>Constant</string>
+   </property>
+   <property name="toolTip">
+    <string>New constant generator</string>
    </property>
   </action>
  </widget>

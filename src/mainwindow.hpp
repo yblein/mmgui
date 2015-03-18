@@ -33,6 +33,8 @@ private slots:
 	void renderingFinished();
 	void renderingStarted();
 
+	void on_actionConstant_triggered();
+
 private:
 	typedef QFutureWatcher<const Map*> FutureWatcherMap;
 

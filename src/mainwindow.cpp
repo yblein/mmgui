@@ -1,17 +1,17 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 
-#include "controlscene.hpp"
-#include "filternode.hpp"
-#include "fractalgenerator.hpp"
-#include "generatornode.hpp"
-#include "ui_islandizecontroller.h"
-#include "filterfunctions.hpp"
-
 #include <QtConcurrent>
 #include <QDebug>
 #include <mm/heightmap.h>
 #include <mm/colormap.h>
+
+#include "controlscene.hpp"
+#include "filternode.hpp"
+#include "fractalgenerator.hpp"
+#include "generatornode.hpp"
+#include "constantgenerator.hpp"
+#include "filterfunctions.hpp"
 
 static QImage heightmapToImage(const mm::heightmap &map)
 {
@@ -68,6 +68,12 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionNewFractalGen_triggered()
 {
 	auto node = new GeneratorNode(tr("Fractal generator"), HandleItem::HeightMap, new FractalGenerator(this));
+	scene->addItem(node);
+}
+
+void MainWindow::on_actionConstant_triggered()
+{
+	auto node = new GeneratorNode(tr("Constant generator"), HandleItem::HeightMap, new ConstantGenerator());
 	scene->addItem(node);
 }
 
