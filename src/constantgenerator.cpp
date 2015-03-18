@@ -1,6 +1,7 @@
 #include "constantgenerator.hpp"
 
 #include <mm/heightmap.h>
+#include <QInputDialog>
 #include <QtGlobal>
 
 #include "src/map.hpp"
@@ -28,5 +29,11 @@ void ConstantGenerator::generate(Map *output)
 
 bool ConstantGenerator::configure()
 {
+	bool ok;
+	auto newValue = QInputDialog::getDouble(nullptr, "Constant generator settings", "Constant value", value_, 0, 1, 2, &ok);
+	if (ok) {
+		value_ = newValue;
+		return true;
+	}
 	return false;
 }

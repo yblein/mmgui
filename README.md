@@ -22,7 +22,6 @@ Edit the location of MapMaker in [mmgui.pro](./mmgui.pro). Then simply run
     * might be too expensive?
     * turn on/off according to map size/computation time?
 * Size independant?
-* Configuration UI for ConstantGenerator
 
 ## Authors
 - Yoann Blein
