@@ -8,7 +8,7 @@
 #include <QGraphicsScene>
 
 Node::Node(QString name, QGraphicsItem *parent)
-	: QGraphicsRectItem(-40, -20, 80, 40, parent),
+	: QGraphicsRectItem(-40, -25, 80, 50, parent),
 	  name_(name), cached_(false)
 {
 	setBrush(Qt::white);

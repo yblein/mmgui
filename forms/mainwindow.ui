@@ -41,6 +41,7 @@
       <string>Generator</string>
      </property>
      <addaction name="actionConstant"/>
+     <addaction name="actionDiamondSquare"/>
      <addaction name="actionNewFractalGen"/>
     </widget>
     <widget class="QMenu" name="menuFilter_2">
@@ -78,6 +79,7 @@
    <addaction name="actionExit"/>
    <addaction name="separator"/>
    <addaction name="actionConstant"/>
+   <addaction name="actionDiamondSquare"/>
    <addaction name="actionNewFractalGen"/>
    <addaction name="separator"/>
    <addaction name="actionColorize"/>
@@ -176,6 +178,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionDiamondSquare">
+   <property name="text">
+    <string>Diamond Square</string>
+   </property>
+   <property name="toolTip">
+    <string>New diamond square generator</string>
    </property>
   </action>
  </widget>

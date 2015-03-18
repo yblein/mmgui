@@ -11,6 +11,7 @@
 #include "generatornode.hpp"
 #include "fractalgenerator.hpp"
 #include "constantgenerator.hpp"
+#include "diamondsquaregenerator.hpp"
 #include "filternode.hpp"
 #include "filters.hpp"
 
@@ -75,6 +76,12 @@ void MainWindow::on_actionNewFractalGen_triggered()
 void MainWindow::on_actionConstant_triggered()
 {
 	auto node = new GeneratorNode(tr("Constant generator"), HandleItem::HeightMap, new ConstantGenerator());
+	scene->addItem(node);
+}
+
+void MainWindow::on_actionDiamondSquare_triggered()
+{
+	auto node = new GeneratorNode(tr("Diamond square generator"), HandleItem::HeightMap, new DiamondSquareGenerator());
 	scene->addItem(node);
 }
 
