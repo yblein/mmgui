@@ -1,5 +1,5 @@
 # Location of MapMaker
-MM_PREFIX = /home/yb/prog/mapmaker/mapmaker
+MM_PREFIX = /usr
 
 # Project configuration
 unix: LIBS += -L$$MM_PREFIX/lib -lmm0
