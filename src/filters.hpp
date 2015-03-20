@@ -65,4 +65,19 @@ private:
 	mm::color_ramp ramp_;
 };
 
+//! Implement shader filter with only one input for now
+class ShaderFilter : public Filter
+{
+public:
+	ShaderFilter();
+
+	virtual void filter(const Map *input, Map *output);
+	virtual bool configure();
+
+protected:
+	double seaLevel_;
+	mm::color_ramp ramp_;
+};
+
+
 #endif // FILTERFUNCTIONS_H

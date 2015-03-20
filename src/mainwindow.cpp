@@ -109,6 +109,12 @@ void MainWindow::on_actionColorize_triggered()
 	scene->addItem(f);
 }
 
+void MainWindow::on_actionShader_triggered()
+{
+	auto f = new FilterNode(tr("Shader Filter"), HandleItem::ColorMap, new ShaderFilter());
+	scene->addItem(f);
+}
+
 void MainWindow::renderingStarted()
 {
 	statusBar()->showMessage(tr("Rendering started..."));

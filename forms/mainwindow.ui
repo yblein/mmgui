@@ -51,6 +51,7 @@
      <addaction name="actionColorize"/>
      <addaction name="actionFlatten"/>
      <addaction name="actionNewFilterIslandize"/>
+     <addaction name="actionShader"/>
      <addaction name="actionSmooth"/>
     </widget>
     <addaction name="menuGenerator_2"/>
@@ -85,6 +86,7 @@
    <addaction name="actionColorize"/>
    <addaction name="actionFlatten"/>
    <addaction name="actionNewFilterIslandize"/>
+   <addaction name="actionShader"/>
    <addaction name="actionSmooth"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -186,6 +188,14 @@
    </property>
    <property name="toolTip">
     <string>New diamond square generator</string>
+   </property>
+  </action>
+  <action name="actionShader">
+   <property name="text">
+    <string>Shader</string>
+   </property>
+   <property name="toolTip">
+    <string>New shader filter</string>
    </property>
   </action>
  </widget>

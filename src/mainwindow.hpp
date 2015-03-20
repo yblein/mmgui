@@ -39,6 +39,8 @@ private slots:
 
 	void on_actionDiamondSquare_triggered();
 
+	void on_actionShader_triggered();
+
 private:
 	typedef QFutureWatcher<const Map*> FutureWatcherMap;
 

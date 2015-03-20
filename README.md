@@ -16,7 +16,6 @@ Edit the location of MapMaker in [mmgui.pro](./mmgui.pro). Then simply run
 * Default scene
 * Complete generators
 * Complete filters
-* Add multi-input filters (filter `shader`)
 * Improve initial positioning of nodes
 * Ensure memory sanity
 * Realtime update when changing settings

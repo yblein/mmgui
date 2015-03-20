@@ -6,6 +6,7 @@
 #include <mm/flatten.h>
 #include <mm/smooth.h>
 #include <mm/colorize.h>
+#include <mm/shader.h>
 #include <QInputDialog>
 #include <QtGlobal>
 
@@ -110,6 +111,33 @@ bool ColorizeFilter::configure()
 {
 	bool ok;
 	auto newSeaLevel = QInputDialog::getDouble(nullptr, "Colorize filter settings", "Sea level", seaLevel_, 0, 100, 2, &ok);
+	if (ok) {
+		seaLevel_ = newSeaLevel;
+		return true;
+	}
+	return false;
+}
+
+ShaderFilter::ShaderFilter()
+	: seaLevel_(0.5), ramp_(mm::color_ramp::basic())
+{
+}
+
+void ShaderFilter::filter(const Map *input, Map *output)
+{
+	auto inputHeightmap = dynamic_cast<const HeightMap*>(input);
+	Q_ASSERT(inputHeightmap != nullptr);
+	auto outputColormap = dynamic_cast<ColorMap*>(output);
+	Q_ASSERT(outputColormap != nullptr);
+
+	outputColormap->data = mm::colorize(ramp_, seaLevel_)(inputHeightmap->data);
+	outputColormap->data = mm::shader(seaLevel_)(outputColormap->data, inputHeightmap->data);
+}
+
+bool ShaderFilter::configure()
+{
+	bool ok;
+	auto newSeaLevel = QInputDialog::getDouble(nullptr, "Shader filter settings", "Sea level", seaLevel_, 0, 100, 2, &ok);
 	if (ok) {
 		seaLevel_ = newSeaLevel;
 		return true;
