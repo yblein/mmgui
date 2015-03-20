@@ -7,8 +7,6 @@
 FilterNode::FilterNode(const QString &name, HandleItem::MapType outputType, Filter *filter, QGraphicsItem *parent)
 	: Node(name, parent), filter_(filter)
 {
-	//ui.setupUi(&dialog);
-
 	addInput(HandleItem::HeightMap);
 	addOutput(outputType);
 

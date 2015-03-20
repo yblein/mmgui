@@ -18,6 +18,7 @@ FractalGenerator::FractalGenerator(QWidget *parent) :
 {
 	ui->setupUi(this);
 	ui->seedSpinBox->setValue(mm::random_engine::default_seed);
+	ui->seedSpinBox->setMaximum(1.84467441e19);
 
 	setWindowTitle(tr("Fractal generator settings"));
 }

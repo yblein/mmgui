@@ -12,6 +12,7 @@ DiamondSquareGenerator::DiamondSquareGenerator(QWidget *parent)
 	  engine_(), diamondSquare_(50), width_(256), height_(256)
 {
 	ui->setupUi(this);
+	ui->seedSpinBox->setMaximum(1.84467441e19);
 	ui->seedSpinBox->setValue(mm::random_engine::default_seed);
 }
 

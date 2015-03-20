@@ -23,6 +23,7 @@ Edit the location of MapMaker in [mmgui.pro](./mmgui.pro). Then simply run
     * turn on/off according to map size/computation time?
 * Size independant?
 * Configurable color ramp for the colorize filter
+* Improve output display size handling
 
 ## Authors
 - Yoann Blein
